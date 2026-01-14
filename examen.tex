@@ -1,0 +1,23 @@
+\documentclass[a4paper, 11pt]{article}
+
+% Configuració per XeLaTeX i fonts que funcionen al núvol
+\usepackage{fontspec}
+% El paquet 'noto' sol estar disponible al docker complet de LaTeX
+\usepackage[sfdefault]{noto} 
+\usepackage[catalan]{babel}
+\usepackage{geometry}
+\geometry{top=2.5cm, bottom=2.5cm, left=2cm, right=2cm}
+
+\begin{document}
+
+\section*{Examen Automatitzat amb GitHub Actions}
+Hola! Aquest PDF s'ha generat automàticament al núvol.
+Si estàs llegint això, el pipeline ha funcionat correctament.
+
+\begin{itemize}
+    \item Motor: XeLaTeX
+    \item Font: Noto Sans
+    \item Estat: Èxit total
+\end{itemize}
+
+\end{document}

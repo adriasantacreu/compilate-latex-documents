@@ -1,0 +1,24 @@
+name: Generar PDF Examen
+on: [push]
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del codi
+        uses: actions/checkout@v4
+
+      - name: Compilar amb XeLaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: examen.tex
+          compiler: xelatex
+          # Instal·lem el paquet noto extra per assegurar que la font hi és
+          extra_system_packages: "fonts-noto"
+          args: "-interaction=nonstopmode -halt-on-error"
+
+      - name: Pujar PDF resultant
+        uses: actions/upload-artifact@v4
+        with:
+          name: Examen-Resultat
+          path: examen.pdf
