@@ -1,5 +1,5 @@
 name: Generar PDF Examen
-on: [push]
+on: [push, workflow_dispatch] # Hem afegit workflow_dispatch per si vols disparar-lo manualment
 
 jobs:
   build_latex:
@@ -13,12 +13,11 @@ jobs:
         with:
           root_file: examen.tex
           compiler: xelatex
-          # Instal·lem el paquet noto extra per assegurar que la font hi és
-          extra_system_packages: "fonts-noto"
+          # Hem tret la línia de extra_system_packages que fallava
           args: "-interaction=nonstopmode -halt-on-error"
 
-      - name: Pujar PDF resultant
+      - name: Guardar el PDF
         uses: actions/upload-artifact@v4
         with:
-          name: Examen-Resultat
+          name: Examen-PDF
           path: examen.pdf
