@@ -69,12 +69,12 @@
 \AddToHook{shipout/background}{%
     \begin{tikzpicture}[remember picture, overlay]
         % LOGO ESQUERRA
-        % \node[anchor=north west, xshift=0.5cm, yshift=-0.5cm, opacity=0.85] at (current page.north west)
-        %     { \includegraphics[height=1.4cm]{logo_institut.png} };
+        \node[anchor=north west, xshift=0.5cm, yshift=-0.5cm, opacity=0.85] at (current page.north west)
+            { \includegraphics[height=1.4cm]{logo_institut.png} };
         
         % LOGO DRETA
-        % \node[anchor=north east, xshift=-0.5cm, yshift=-0.5cm, opacity=0.85] at (current page.north east)
-        %     { \includegraphics[height=1.3cm]{logo_generalitat.png} };
+        \node[anchor=north east, xshift=-0.5cm, yshift=-0.5cm, opacity=0.85] at (current page.north east)
+            { \includegraphics[height=1.3cm]{logo_generalitat.png} };
     \end{tikzpicture}%
 }
 
