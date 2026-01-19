@@ -1,0 +1,255 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FITXA: ÀLGEBRA - EQUACIONS RACIONALS I FACTORITZADES
+% Estil: Plantilla "Examen Modern" (Colors + Noto Sans + Logos)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper, 11pt]{article}
+
+% --- PAQUETS ESSENCIALS ---
+\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage[margin=2.5cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{amsfonts}
+\usepackage{xcolor}
+\usepackage{soul}
+\usepackage[most]{tcolorbox}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{lastpage} 
+\usepackage{pgfplots}
+\usepackage{hyperref} 
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+
+% --- CONFIGURACIÓ DE FONTS ---
+% Si no tens Noto Sans instal·lada, canvia per "Arial" o comenta aquestes línies
+\setmainfont{Noto Sans}
+\setsansfont{Noto Sans}
+\newfontfamily{\titlefont}{Noto Sans} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- CONFIGURACIÓ DE PARÀGRAFS (NO INDENTACIÓ) ---
+\setlength{\parindent}{0pt} 
+\setlength{\parskip}{0.5em} 
+
+% --- COLORS I ESTILS ---
+\definecolor{BrightPink}{HTML}{FF1493}
+\definecolor{BrightBlue}{HTML}{00BFFF}
+\definecolor{BrightGreen}{HTML}{32CD32}
+\definecolor{BrightYellow}{HTML}{FFD700}
+\definecolor{BrightPurple}{HTML}{9400D3}
+
+% Llista de colors per als títols de les seccions
+\def\questioncolors{{"BrightPurple","BrightGreen","BrightBlue","BrightPink"}}
+\newcounter{qcolorindex}
+\setcounter{qcolorindex}{0}
+\newcommand{\currentqcolor}{}
+
+\newcommand{\setsectioncolor}{%
+  \stepcounter{qcolorindex}%
+  \ifnum\theqcolorindex>4\setcounter{qcolorindex}{1}\fi%
+  \pgfmathtruncatemacro{\myqindex}{\theqcolorindex-1}%
+  \pgfmathparse{\questioncolors[\myqindex]}%
+  \edef\currentqcolor{\pgfmathresult}%
+}
+\newcommand{\hlcurrent}[1]{{\sethlcolor{\currentqcolor!30!white}\hl{#1}}}
+
+% Estils de caixes moderns
+\tcbuselibrary{skins, breakable}
+\newtcolorbox{infobox}[2][]{
+    enhanced, breakable,
+    title=#2, colback=black!5, colbacktitle=black!20,
+    colframe=white, boxrule=0pt, arc=0mm, left=5mm,
+    toptitle=1.5mm, bottomtitle=1.5mm, 
+    overlay={%
+        \draw[black!20, line width=2pt] 
+        ([xshift=1pt]frame.south west) -- ([xshift=1pt]frame.north west);
+    },
+    fonttitle=\bfseries, coltitle=black, #1
+}
+
+% --- CONFIGURACIÓ ENLLAÇOS ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=BrightBlue,
+}
+
+% --- CONFIGURACIÓ CAPÇALERA/PEU ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[R]{\tikz\node[circle, fill=black!70, text=white, font=\small\bfseries, inner sep=3pt]{\thepage};}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\headheight}{25pt}
+
+% --- LOGOS EN MARCA D'AIGUA (NOU) ---
+\AddToHook{shipout/background}{%
+    \begin{tikzpicture}[remember picture, overlay]
+        % --- LOGO ESQUERRA ---
+        \node[anchor=north west, xshift=0.5cm, yshift=-0.5cm, opacity=0.85] at (current page.north west) 
+            { \includegraphics[height=1.4cm]{logo_institut.png} }; 
+        
+        % --- LOGO DRETA ---
+        \node[anchor=north east, xshift=-0.5cm, yshift=-0.5cm, opacity=0.85] at (current page.north east) 
+            { \includegraphics[height=1.3cm]{logo_generalitat.png} }; 
+    \end{tikzpicture}%
+}
+
+% --- COMANDES PERSONALITZADES ---
+\newcommand{\parttitle}[1]{%
+  \setsectioncolor
+  \par\vspace{1.5em}\noindent{\Large\titlefont\hlcurrent{#1}}\par\nopagebreak\vspace{0.8em}
+}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\newcommand{\headersection}[2][Matemàtiques]{%
+  \par\vspace*{0pt}
+  \noindent \setsectioncolor
+  {\Large\bfseries\color{\currentqcolor} #1}\\[0.1cm] 
+  {\textbf{\color{black!70} Fitxa: \textit{#2}}}
+    
+  \vspace{0.2cm}
+    
+  \noindent
+  \begin{tabular}{@{}p{10cm}p{5cm}@{}}
+  \toprule
+    \textbf{Nom i cognoms:} & \textbf{Data:} \\
+    \bottomrule
+  \end{tabular}
+    
+  \vspace{0.5cm}
+}
+
+% --- INICI DEL DOCUMENT ---
+\begin{document}
+\thispagestyle{fancy}
+
+% --- CAPÇALERA ---
+\headersection[Àlgebra]{Equacions Racionals i Factoritzades}
+
+% --- INSTRUCCIONS ---
+\begin{infobox}{Instruccions}
+    Aquesta fitxa conté teoria en vídeo, exemples resolts i exercicis. Has de resoldre \textbf{almenys 4 exercicis} al teu quadern, indicant clarament el \textbf{MCM} en les equacions racionals.
+\end{infobox}
+
+% --- BLOC I: TEORIA ---
+\parttitle{I. Teoria (Vídeos recomanats)}
+
+Per resoldre aquests exercicis necessites dominar el Mínim Comú Múltiple de polinomis i la resolució d'equacions de grau superior.
+
+\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.8em]
+    \item \textbf{Pas previ:} Com fer el MCM de polinomis.\\
+    \href{https://www.youtube.com/watch?v=jCYUJ578S24}{\texttt{▶ Veure vídeo: Susi Profe - MCM de Polinomios}}
+    
+    \item \textbf{Tipus 1:} Com resoldre equacions amb fraccions algebraiques.\\
+    \href{https://www.youtube.com/watch?v=P1Fjg1pdRQ0}{\texttt{▶ Veure vídeo: Susi Profe - Ecuaciones Racionales}}
+    
+    \item \textbf{Tipus 2:} Com resoldre equacions factoritzades (parèntesis).\\
+    \href{https://www.youtube.com/watch?v=djG6T3fA5W4}{\texttt{▶ Veure vídeo: Susi Profe - Ecuaciones Factorizadas}}
+\end{enumerate}
+
+% --- BLOC II: EXEMPLES ---
+\parttitle{II. Exemples Pràctics Resolts}
+
+Analitza aquests dos exemples abans de començar els exercicis.
+
+\begin{tcolorbox}[colback=white, colframe=black!10, title=\textbf{Exemple A: Equació Racional}]
+    \textbf{Enunciat:} $\displaystyle \frac{2}{x} + \frac{x}{x+1} = 1$
+    
+    \textbf{1. Busquem el MCM:} Els denominadors són $x$, $(x+1)$ i $1$. 
+    $$\text{MCM} = x(x+1)$$
+    
+    \textbf{2. Ajustem numeradors:}
+    $$\frac{2(x+1)}{x(x+1)} + \frac{x(x)}{x(x+1)} = \frac{1 \cdot x(x+1)}{x(x+1)}$$
+    
+    \textbf{3. Eliminem denominadors i resolem:}
+    \begin{align*}
+        2(x+1) + x^2 &= x^2 + x \\
+        2x + 2 + x^2 &= x^2 + x \quad \text{(Restem } x^2 \text{ als dos costats)} \\
+        2x - x &= -2 \\
+        \mathbf{x} &= \mathbf{-2}
+    \end{align*}
+    \textit{Comprovació: El denominador no es fa zero amb $-2$. Solució vàlida.}
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+\begin{tcolorbox}[colback=white, colframe=black!10, title=\textbf{Exemple B: Equació Factoritzada}]
+    \textbf{Enunciat:} $(x - 3) \cdot (x^2 - 4) = 0$
+    
+    \textbf{Idea clau:} Igualem cada factor (parèntesi) a zero per separat.
+    
+    \begin{itemize}
+        \item Primer factor: $x - 3 = 0 \Rightarrow \mathbf{x = 3}$
+        \item Segon factor: $x^2 - 4 = 0 \Rightarrow x^2 = 4 \Rightarrow x = \pm\sqrt{4} \Rightarrow \mathbf{x = 2, x = -2}$
+    \end{itemize}
+    
+    \textbf{Solucions:} $x=3, x=2, x=-2$.
+\end{tcolorbox}
+
+\newpage
+
+% --- BLOC III: EXERCICIS ---
+\parttitle{III. Llistat d'Exercicis}
+
+Resol els exercicis següents. Recorda indicar el MCM en les racionals.
+
+\vspace{0.5cm}
+
+\noindent\textbf{\color{\currentqcolor} Bloc A: Equacions Racionals}
+\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=1.2em]
+    \item $\displaystyle \frac{1}{x} + \frac{1}{2} = 3$ 
+    \hfill \textit{\small (Sol: $x = 2/5$)}
+
+    \item $\displaystyle \frac{x}{3} + \frac{2}{x} = \frac{5}{3}$ 
+    \hfill \textit{\small (Sol: $x = 2, x = 3$)}
+
+    \item $\displaystyle \frac{5}{x-2} = \frac{3}{x+2}$ 
+    \hfill \textit{\small (Sol: $x = -8$)}
+
+    \item $\displaystyle \frac{2}{x+1} + \frac{3}{x-1} = \frac{4}{x^2-1}$ \quad \textit{\small (Pista: $x^2-1 = (x+1)(x-1)$)}
+    \hfill \textit{\small (Sol: $x = 3/5$)}
+
+    \item $\displaystyle \frac{x}{x-1} + 2x = 2$ 
+    \hfill \textit{\small (Sol: $x = 1/2, x = 2$)}
+\end{enumerate}
+
+\vspace{1cm}
+
+\noindent\textbf{\color{\currentqcolor} Bloc B: Equacions Factoritzades (Grau Superior)}
+\begin{enumerate}[label=\textbf{\arabic*.}, start=6, itemsep=1.2em]
+    \item $(x-5) \cdot (x+3) = 0$ 
+    \hfill \textit{\small (Sol: $x=5, x=-3$)}
+
+    \item $x \cdot (x-1) \cdot (x+4) = 0$ 
+    \hfill \textit{\small (Sol: $x=0, x=1, x=-4$)}
+
+    \item $(x^2 - 9) \cdot (x - 2) = 0$ 
+    \hfill \textit{\small (Sol: $x=\pm 3, x=2$)}
+
+    \item $(x^2 + 5) \cdot (2x - 10) = 0$ 
+    \hfill \textit{\small (Sol: $x=5$)}
+
+    \item $(x - 1)^2 \cdot (x + 2) = 0$ 
+    \hfill \textit{\small (Sol: $x=1, x=-2$)}
+\end{enumerate}
+
+\vspace{1.5cm}
+\hrule
+\vspace{0.5cm}
+
+\begin{infobox}[colback=yellow!10]{Recordatori important}
+    En les equacions racionals, sempre has de \textbf{comprovar} que la solució obtinguda no faci zero cap denominador de l'equació original. Si un valor fa zero el denominador, cal descartar-lo!
+\end{infobox}
+
+\end{document}

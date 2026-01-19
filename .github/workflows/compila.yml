@@ -1,22 +1,44 @@
-name: Generar PDF Examen
-on: [push, workflow_dispatch] # Hem afegit workflow_dispatch per si vols disparar-lo manualment
+name: Generar Examen i Pujar a Drive
+on: [push, workflow_dispatch]
 
 jobs:
-  build_latex:
+  build_and_upload:
     runs-on: ubuntu-latest
     steps:
+      # 1. Baixar el codi del repo
       - name: Checkout del codi
         uses: actions/checkout@v4
 
+      # 2. Compilar el LaTeX a PDF
       - name: Compilar amb XeLaTeX
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: examen.tex
+          root_file: examen.tex  # Assegura't que el teu .tex es diu així!
           compiler: xelatex
-          # Hem tret la línia de extra_system_packages que fallava
           args: "-interaction=nonstopmode -halt-on-error"
 
-      - name: Guardar el PDF
+      # 3. Preparar Python
+      - name: Instal·lar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      # 4. Instal·lar llibreries de Google
+      - name: Instal·lar dependències
+        run: pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
+
+      # 5. Crear el fitxer de credencials a partir del Secret
+      - name: Crear fitxer de credencials
+        run: echo '${{ secrets.GDRIVE_CREDENTIALS }}' > credentials.json
+
+      # 6. Executar l'script per pujar a Drive
+      - name: Pujar a Google Drive
+        env:
+          GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
+        run: python pujar_drive.py
+
+      # 7. (Opcional) Guardar també el PDF a GitHub per si de cas
+      - name: Guardar Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Examen-PDF
