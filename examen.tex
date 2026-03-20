@@ -77,18 +77,15 @@
 }
 
 % --- LOGOS EN TOTES LES PÀGINES ---
+\graphicspath{{./}{./assets/}}
 \AddToHook{shipout/background}{%
     \begin{tikzpicture}[remember picture, overlay]
         \node[anchor=north west, xshift=0.5cm, yshift=-0.5cm, opacity=0.85]
             at (current page.north west)
-            {\IfFileExists{logo_institut.png}%
-                {\includegraphics[height=1.4cm]{logo_institut.png}}%
-                {}};
+            {\includegraphics[height=1.4cm]{logo_institut.png}};
         \node[anchor=north east, xshift=-0.5cm, yshift=-0.5cm, opacity=0.85]
             at (current page.north east)
-            {\IfFileExists{logo_generalitat.png}%
-                {\includegraphics[height=1.3cm]{logo_generalitat.png}}%
-                {}};
+            {\includegraphics[height=1.3cm]{logo_generalitat.png}};
     \end{tikzpicture}%
 }
 
