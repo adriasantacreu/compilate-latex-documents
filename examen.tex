@@ -81,13 +81,13 @@
     \begin{tikzpicture}[remember picture, overlay]
         \node[anchor=north west, xshift=0.5cm, yshift=-0.5cm, opacity=0.85]
             at (current page.north west)
-            {\IfFileExists{assets/logo_institut.png}%
-                {\includegraphics[height=1.4cm]{assets/logo_institut.png}}%
+            {\IfFileExists{logo_institut.png}%
+                {\includegraphics[height=1.4cm]{logo_institut.png}}%
                 {}};
         \node[anchor=north east, xshift=-0.5cm, yshift=-0.5cm, opacity=0.85]
             at (current page.north east)
-            {\IfFileExists{assets/logo_generalitat.png}%
-                {\includegraphics[height=1.3cm]{assets/logo_generalitat.png}}%
+            {\IfFileExists{logo_generalitat.png}%
+                {\includegraphics[height=1.3cm]{logo_generalitat.png}}%
                 {}};
     \end{tikzpicture}%
 }
