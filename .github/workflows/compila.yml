@@ -1,15 +1,19 @@
-name: Generar Examen i Pujar a Drive
+name: Compilar LaTeX i commitar PDF
+
 on: [push, workflow_dispatch]
 
+permissions:
+  contents: write
+
 jobs:
-  build_and_upload:
+  build:
     runs-on: ubuntu-latest
     steps:
-      # 1. Baixar el codi del repo
+      # 1. Checkout
       - name: Checkout del codi
         uses: actions/checkout@v4
 
-      # 2. Compilar el LaTeX a PDF
+      # 2. Compilar LaTeX → PDF
       - name: Compilar amb XeLaTeX
         uses: xu-cheng/latex-action@v3
         with:
@@ -18,29 +22,19 @@ jobs:
           args: "-interaction=nonstopmode -halt-on-error"
           extra_fonts: ./assets/fonts/*.ttf
 
-      # 3. Preparar Python
-      - name: Instal·lar Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
+      # 3. Commitar el PDF de tornada al repo
+      - name: Commitar PDF
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add examen.pdf
+          git diff --staged --quiet || git commit -m "PDF compilat automàticament [skip ci]"
+          git push
 
-      # 4. Instal·lar llibreries de Google
-      - name: Instal·lar dependències
-        run: pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
-
-      # 5. Crear el fitxer de credencials a partir del Secret
-      - name: Crear fitxer de credencials
-        run: echo '${{ secrets.GDRIVE_CREDENTIALS }}' > credentials.json
-
-      # 6. Executar l'script per pujar a Drive
-      - name: Pujar a Google Drive
-        env:
-          GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
-        run: python pujar_drive.py
-
-      # 7. (Opcional) Guardar també el PDF a GitHub per si de cas
+      # 4. Guardar també com a Artifact (descàrrega directa des de GitHub)
       - name: Guardar Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Examen-PDF
+          name: examen-pdf
           path: examen.pdf
+          retention-days: 90
