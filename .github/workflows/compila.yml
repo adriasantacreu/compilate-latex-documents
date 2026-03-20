@@ -21,6 +21,7 @@ jobs:
           compiler: xelatex
           args: "-interaction=nonstopmode -halt-on-error"
           extra_fonts: ./assets/fonts/*.ttf
+          pre_compile: "echo '=== PWD ===' && pwd && echo '=== FILES ===' && ls -la *.png 2>/dev/null || echo 'NO PNG A PWD' && ls -la assets/*.png 2>/dev/null || echo 'NO PNG A ASSETS'"
 
       # 3. Commitar el PDF de tornada al repo
       - name: Commitar PDF
