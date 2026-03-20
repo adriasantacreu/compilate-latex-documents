@@ -1,8 +1,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% EXAMEN: MATEMÀTIQUES I - 1r BATXILLERAT
-% Recuperació 1a Avaluació
-% Estructura: 15 Test + 4 Problemes (amb fulls en blanc i LOGOS)
-% Correcció: Salt de línia a la capçalera arreglat.
+% PLANTILLA EXAMEN — IES Sant Pol de Mar
+% Adrià Santacreu
+%
+% ÚS: Defineix les variables a la secció CONFIGURACIÓ i omple
+%     les seccions de qüestions i problemes.
+%
+% COMPILAR: xelatex plantilla-examen.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper, 11pt]{article}
@@ -10,14 +13,13 @@
 % --- PAQUETS ESSENCIALS ---
 \usepackage[utf8]{inputenc}
 \usepackage[catalan]{babel}
-\usepackage{amsmath, amssymb}
+\usepackage{amsmath, amssymb, amsfonts}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{fontspec}
-\usepackage[margin=2.5cm]{geometry} 
+\usepackage[margin=2.5cm]{geometry}
 \usepackage{fancyhdr}
 \usepackage{enumitem}
-\usepackage{amsfonts}
 \usepackage{xcolor}
 \usepackage{soul}
 \usepackage[most]{tcolorbox}
@@ -25,21 +27,29 @@
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage{colortbl}
-\usepackage{lastpage} 
+\usepackage{lastpage}
 
-% --- CONFIGURACIÓ DE FONTS ---
-\setmainfont{Noto Sans}
-\setsansfont{Noto Sans}
-\newfontfamily{\titlefont}{Noto Sans} 
-\renewcommand{\familydefault}{\sfdefault}
+% --- CONFIGURACIÓ DE FONTS (path relatiu, portable) ---
+\setmainfont{NotoSans-Regular.ttf}[
+  Path           = assets/fonts/,
+  BoldFont       = NotoSans-Bold.ttf,
+  ItalicFont     = NotoSans-Italic.ttf,
+  BoldItalicFont = NotoSans-BoldItalic.ttf
+]
+\setsansfont{NotoSans-Regular.ttf}[
+  Path           = assets/fonts/,
+  BoldFont       = NotoSans-Bold.ttf,
+  ItalicFont     = NotoSans-Italic.ttf,
+  BoldItalicFont = NotoSans-BoldItalic.ttf
+]
 
-% --- COLORS I ESTILS ---
+% --- COLORS ---
 \definecolor{BrightPink}{HTML}{FF1493}
 \definecolor{BrightBlue}{HTML}{00BFFF}
 \definecolor{BrightGreen}{HTML}{32CD32}
 \definecolor{BrightPurple}{HTML}{9400D3}
 
-% Llista de colors per als títols
+% --- COLORS ROTATIUS PER TÍTOLS ---
 \def\questioncolors{{"BrightPurple","BrightGreen","BrightBlue"}}
 \newcounter{qcolorindex}
 \setcounter{qcolorindex}{0}
@@ -60,357 +70,245 @@
     enhanced, breakable,
     title=#2, colback=black!5, colbacktitle=black!20,
     colframe=white, boxrule=0pt, arc=0mm, left=5mm,
-    toptitle=1.5mm, bottomtitle=1.5mm, 
+    toptitle=1.5mm, bottomtitle=1.5mm,
     overlay={%
-        \draw[black!20, line width=2pt] 
+        \draw[black!20, line width=2pt]
         ([xshift=1pt]frame.south west) -- ([xshift=1pt]frame.north west);
     },
     fonttitle=\bfseries, coltitle=black, #1
 }
 
-% --- LOGOS EN MARCA D'AIGUA (INTEGRATS) ---
+% --- LOGOS EN TOTES LES PÀGINES ---
 \AddToHook{shipout/background}{%
     \begin{tikzpicture}[remember picture, overlay]
-        
-        % --- LOGO ESQUERRA ---
-        \node[anchor=north west, xshift=0.5cm, yshift=-0.5cm, opacity=0.85] at (current page.north west)
-            { \includegraphics[height=1.4cm]{logo_institut.png} };
-        
-        % --- LOGO DRETA ---
-        \node[anchor=north east, xshift=-0.5cm, yshift=-0.5cm, opacity=0.85] at (current page.north east)
-            { \includegraphics[height=1.3cm]{logo_generalitat.png} };
-            
+        \node[anchor=north west, xshift=0.5cm, yshift=-0.5cm, opacity=0.85]
+            at (current page.north west)
+            {\IfFileExists{assets/logo_institut.png}%
+                {\includegraphics[height=1.4cm]{assets/logo_institut.png}}%
+                {}};
+        \node[anchor=north east, xshift=-0.5cm, yshift=-0.5cm, opacity=0.85]
+            at (current page.north east)
+            {\IfFileExists{assets/logo_generalitat.png}%
+                {\includegraphics[height=1.3cm]{assets/logo_generalitat.png}}%
+                {}};
     \end{tikzpicture}%
 }
 
 % --- CAPÇALERA I PEU ---
 \pagestyle{fancy}
 \fancyhf{}
-\fancyfoot[R]{\tikz\node[circle, fill=black!70, text=white, font=\small\bfseries, inner sep=3pt]{\thepage};}
+\fancyfoot[R]{\tikz\node[circle, fill=black!70, text=white,
+    font=\small\bfseries, inner sep=3pt]{\thepage};}
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headheight}{25pt}
 
 % --- COMANDES ---
 \newcommand{\parttitle}[1]{%
   \setsectioncolor
-  \par\vspace{1.5em}\noindent{\Large\titlefont\hlcurrent{#1}}\par\nopagebreak\vspace{0.8em}
+  \par\vspace{1.5em}\noindent{\Large\hlcurrent{#1}}\par\nopagebreak\vspace{0.8em}
 }
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 
-% --- CAPÇALERA CORREGIDA ---
-\newcommand{\headersection}[2][Matemàtiques I]{%
+\newcommand{\headersection}[2]{%
   \par\vspace*{0pt}
   \noindent \setsectioncolor
-  {\Large\bfseries\color{\currentqcolor} #1}\\[0.1cm] 
+  {\Large\bfseries\color{\currentqcolor} #1}\\[0.1cm]
   {\textbf{\color{black!70} Unitat: \textit{#2}}}
-  
-  \par\vspace{0.4cm} % SALT DE LÍNIA AFEGIT AQUÍ
-  
+  \par\vspace{0.4cm}
   \noindent
   \begin{tabular}{@{}p{10cm}p{5cm}@{}}
   \toprule
-    \textbf{Nom i cognoms:} \hspace{0.25cm} {\Large \%NOM\%} & \textbf{Qualificació:} \\
+    \textbf{Nom i cognoms:} & \textbf{Qualificació:} \\
     \bottomrule
   \end{tabular}
-  \par
-  \vspace{0.5cm}
+  \par\vspace{0.5cm}
 }
 
-% --- INICI DEL DOCUMENT ---
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  CONFIGURACIÓ — modifica aquí cada examen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\assignatura}{Matemàtiques I}
+\newcommand{\curs}{1r Batxillerat}
+\newcommand{\unitat}{Àlgebra i Trigonometria}
+\newcommand{\dataexamen}{20 de març del 2026}
+\newcommand{\tempsexamen}{90}
+\newcommand{\puntstest}{4}      % punts totals de la part test
+\newcommand{\puntsproblemes}{6} % punts totals de la part problemes
+\newcommand{\encert}{0,4}       % punts per encert
+\newcommand{\error}{0,13}       % penalització per error
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
 \thispagestyle{fancy}
 
-% --- CAPÇALERA ---
-\headersection[Matemàtiques I]{Recuperació 1a Avaluació}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  FULL 1 — QÜESTIONS TEST
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% --- INSTRUCCIONS ---
-\begin{infobox}{Instruccions Generals}
-    \textbf{Temps:} 90 minuts. \textbf{Calculadora:} NO permesa. \par\vspace{0.5em}
-    \textbf{Part A (Test - 4 punts):} 15 preguntes. Respon al full de respostes. \par
-    \textit{Puntuació:} Encerts: +0,26 | Errors: -0,08 | En blanc: 0. \par\vspace{0.5em}
-    \textbf{Part B (Problemes - 6 punts):} 4 exercicis de desenvolupament (1,5 punts cadascun). Cal justificar tots els passos.
+\headersection{\assignatura{} — \curs}{\unitat}
+
+\begin{infobox}{Instruccions generals}
+    \textbf{Data:} \dataexamen \par\vspace{0.3em}
+    \textbf{Temps:} \tempsexamen{} minuts. \par\vspace{0.3em}
+    \textbf{Calculadora:} NO permesa. \par\vspace{0.3em}
+    \textbf{Criteris:} Tots els resultats s'han de simplificar i racionalitzar al màxim de forma exacta.\par\vspace{0.3em}
+    \textbf{Puntuació Test:} Encerts: +\encert{} | Errors: --\error{} | En blanc: 0.
 \end{infobox}
 
-% --- PART A: TEST ---
-\parttitle{Part A: Qüestionari Tipus Test (4 punts)}
+\parttitle{Part A — Qüestions (\puntstest{} punts)}
+\noindent\textit{Escriu la lletra de l'opció correcta a la graella de respostes de la pàgina següent.}
 
-\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.4em]
+\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=1em]
 
-    % P1
-    \item Quin dels següents nombres pertany al conjunt dels Irracionals ($\mathbb{I}$)?
-    \begin{multicols}{4}
-    \begin{enumerate}[label=\alph*)]
-        \item $2,71$
-        \item $\sqrt{16}$
-        \item $1,333...$
-        \item $1-\sqrt{3}$
-    \end{enumerate}
-    \end{multicols}
-
-    % P2
-    \item La intersecció dels intervals $A = [-3, 5)$ i $B = (0, +\infty)$ és:
-    \begin{multicols}{4}
-    \begin{enumerate}[label=\alph*)]
-        \item $[-3, 0)$
-        \item $(0, 5)$
-        \item $(0, 5]$
-        \item $[-3, +\infty)$
-    \end{enumerate}
-    \end{multicols}
-
-    % P3
-    \item Si racionalitzem la fracció $\frac{3}{\sqrt{3}}$, quin és el resultat simplificat?
-    \begin{multicols}{4}
-    \begin{enumerate}[label=\alph*)]
-        \item $3$
-        \item $1$
-        \item $\sqrt{3}$
-        \item $3\sqrt{3}$
-    \end{enumerate}
-    \end{multicols}
-
-    % P4
-    \item Quin és el resultat de $(2 \cdot 10^{-4}) \cdot (3 \cdot 10^7)$ en notació científica?
-    \begin{multicols}{4}
-    \begin{enumerate}[label=\alph*)]
-        \item $6 \cdot 10^{-28}$
-        \item $5 \cdot 10^3$
-        \item $6 \cdot 10^{11}$
-        \item $6 \cdot 10^3$
-    \end{enumerate}
-    \end{multicols}
-
-    % P5
-    \item L'expressió $\sqrt[5]{a^2 \cdot \sqrt{a}}$ és equivalent a:
-    \begin{multicols}{4}
-    \begin{enumerate}[label=\alph*)]
-        \item $a^{1/2}$
-        \item $a^{2/5}$
-        \item $a^{1/5}$
-        \item $a^{5/2}$
-    \end{enumerate}
-    \end{multicols}
-
-    % P6
-    \item Si $\log_x(25) = 2$, quin és el valor de $x$?
-    \begin{multicols}{4}
-    \begin{enumerate}[label=\alph*)]
-        \item 12,5
-        \item 5
-        \item 10
-        \item 625
-    \end{enumerate}
-    \end{multicols}
-
-    % P7
-    \item Aplicant les propietats, a què és igual $\ln(e^3) + \log(100)$?
-    \begin{multicols}{4}
-    \begin{enumerate}[label=\alph*)]
-        \item 5
-        \item $e^3 + 100$
-        \item 13
-        \item $2e + 2$
-    \end{enumerate}
-    \end{multicols}
-
-    \newpage
-
-    % P8
-    \item L'expressió $2\log(A) - \log(B)$ es condensa en:
-    \begin{multicols}{4}
-    \begin{enumerate}[label=\alph*)]
-        \item $\log(\frac{2A}{B})$
-        \item $\log(A^2 - B)$
-        \item $\log(\frac{A^2}{B})$
-        \item $\frac{\log(A^2)}{\log(B)}$
-    \end{enumerate}
-    \end{multicols}
-
-
-    % P9
-    \item Sabent que $\log(2) \approx 0,3$, quant val $\log(20)$?
-    \begin{multicols}{4}
-    \begin{enumerate}[label=\alph*)]
-        \item 2,3
-        \item 1,3
-        \item 0,6
-        \item 20,3
-    \end{enumerate}
-    \end{multicols}
-
-    % P10
-    \item Quin és el grau del polinomi $P(x) = (x^2 + 1)^3 - x^6$?
-    \begin{multicols}{4}
-    \begin{enumerate}[label=\alph*)]
-        \item Grau 6
-        \item Grau 5
-        \item Grau 4
-        \item Grau 0
-    \end{enumerate}
-    \end{multicols}
-
-    % P11
-    \item Segons el Teorema del Residu, el residu de dividir $P(x)$ entre $(x+2)$ és:
-    \begin{multicols}{4}
-    \begin{enumerate}[label=\alph*)]
-        \item $P(2)$
-        \item $P(-2)$
-        \item $-2$
-        \item $0$
-    \end{enumerate}
-    \end{multicols}
-
-    % P12
-    \item Si un polinomi $P(x)$ té arrels $1, -1, 0$, la factorització podria ser:
+    % Q1 (Resposta correcta: A)
+    \item El desenvolupament de $(2x - 3)^2$ és:
     \begin{multicols}{2}
-    \begin{enumerate}[label=\alph*)]
-        \item $(x-1)(x+1)$
-        \item $(x+1)^2(x-1)$
-        \item $x(x-1)(x+1)$
-        \item $x(x^2+1)$
+    \begin{enumerate}[label=\textbf{\Alph*)}, itemsep=0.3em]
+        \item $4x^2 - 12x + 9$
+        \item $4x^2 + 9$
+        \item $4x^2 - 6x + 9$
+        \item $2x^2 - 12x + 9$
     \end{enumerate}
     \end{multicols}
 
-    % P13
-    \item Quin terme falta a la identitat $(2x - 3)^2 = 4x^2 - \dots + 9$?
-    \begin{multicols}{4}
-    \begin{enumerate}[label=\alph*)]
-        \item $6x$
-        \item $6$
-        \item $12x^2$
-        \item $12x$
+    % Q2 (Resposta correcta: C)
+    \item Si el discriminant $\Delta = b^2 - 4ac$ d'una equació de 2n grau és negatiu, l'equació té:
+    \begin{multicols}{2}
+    \begin{enumerate}[label=\textbf{\Alph*)}, itemsep=0.3em]
+        \item Dues solucions reals iguals
+        \item Dues solucions reals diferents
+        \item Cap solució real
+        \item Una solució real
     \end{enumerate}
     \end{multicols}
 
-    % P14
-    \item Si el residu d'una divisió per Ruffini és 0, podem afirmar que:
-    \begin{enumerate}[label=\alph*)]
-        \item La divisió és exacta i el divisor és factor del dividend.
-        \item El quocient és 0.
-        \item El polinomi no té arrels reals.
-        \item El dividend és un nombre constant.
+    % Q3 (Resposta correcta: D)
+    \item Quina d'aquestes equacions és una equació biquadrada?
+    \begin{multicols}{2}
+    \begin{enumerate}[label=\textbf{\Alph*)}, itemsep=0.3em]
+        \item $x^4 + x^3 - 1 = 0$
+        \item $x^3 - 4x = 0$
+        \item $x^4 + x^2 + x = 0$
+        \item $x^4 - 5x^2 + 4 = 0$
     \end{enumerate}
+    \end{multicols}
 
-    % P15
-    \item La solució de la inequació $|x| < 3$ és l'interval:
+    % Q4 (Resposta correcta: B)
+    \item Quants radians equivalen a $150°$?
     \begin{multicols}{4}
-    \begin{enumerate}[label=\alph*)]
-        \item $[-3, 3]$
-        \item $(-\infty, 3)$
-        \item $(3, +\infty)$
-        \item $(-3, 3)$
+    \begin{enumerate}[label=\textbf{\Alph*)}, itemsep=0.3em]
+        \item $\dfrac{\pi}{3}$
+        \item $\dfrac{5\pi}{6}$
+        \item $\dfrac{2\pi}{3}$
+        \item $\dfrac{3\pi}{4}$
+    \end{enumerate}
+    \end{multicols}
+
+    % Q5 (Resposta correcta: A)
+    \item El valor exacte de $\sin^2(45°) + \cos^2(45°)$ és:
+    \begin{multicols}{4}
+    \begin{enumerate}[label=\textbf{\Alph*)}, itemsep=0.3em]
+        \item $1$
+        \item $\sqrt{2}$
+        \item $0$
+        \item $\dfrac{\sqrt{2}}{2}$
     \end{enumerate}
     \end{multicols}
 
 \end{enumerate}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  FULL 2 — GRAELLA DE RESPOSTES (pàgina senar = dreta)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 
-% --- FULL DE RESPOSTES ---
-\headersection[Matemàtiques I]{Recuperació}
+\headersection{\assignatura{} — \curs}{\unitat}
+\parttitle{Part A — Graella de respostes}
 
-\parttitle{Full de respostes (Part A)}
-\vspace{1em}
-\noindent\textit{Marca amb una X la casella correcta.}
-\vspace{1em}
+\noindent\textbf{Escriu la lletra de l'opció correcta a cada cel·la:}
+\vspace{0.5cm}
 
-\renewcommand{\arraystretch}{2.2}
+\renewcommand{\arraystretch}{2.5}
 \begin{center}
-\begin{tabular}{|*{5}{C{1.5cm}|}}
+\begin{tabular}{|*{5}{C{1.8cm}|}}
 \hline
-\rowcolor{black!15} \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
-\hline
- & & & & \\
-\hline
-\end{tabular}
-\vspace{0.5cm}
-
-\begin{tabular}{|*{5}{C{1.5cm}|}}
-\hline
-\rowcolor{black!15} \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} \\
-\hline
- & & & & \\
-\hline
-\end{tabular}
-\vspace{0.5cm}
-
-\begin{tabular}{|*{5}{C{1.5cm}|}}
-\hline
-\rowcolor{black!15} \textbf{11} & \textbf{12} & \textbf{13} & \textbf{14} & \textbf{15} \\
+\rowcolor{black!10} \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
 \hline
  & & & & \\
 \hline
 \end{tabular}
 \end{center}
 
-\newpage
-\null
+\vfill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  FULL 3 — PROBLEMES (comença en pàgina parell)
+%  Afegir \newpage\null\newpage si cal forçar pàgina parell
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 
-% --- PART B: PROBLEMES ---
-\headersection[Matemàtiques I]{Recuperació}
-\parttitle{Part B: Problemes (6 punts)}
+\headersection{\assignatura{} — \curs}{\unitat}
+\parttitle{Part B — Problemes (\puntsproblemes{} punts)}
 
-% PROBLEMA 1
-\noindent{\large\bfseries Problema 1 (1,5 punts): Operacions amb Radicals}
-\par\vspace{1em}
-\begin{enumerate}[label=\alph*)]
-    \item Opera i simplifica al màxim la següent expressió, extraient tots els factors possibles de les arrels:
-    $$3\sqrt{8} - 5\sqrt{18} + \sqrt{50}$$
-    \item Racionalitza el denominador i simplifica el resultat:
-    $$\frac{4}{\sqrt{5} - 1}$$
-\end{enumerate}
+% ---- PROBLEMA 1 ----
+\noindent{\large\bfseries Problema 1 (2 punts): Equacions de 2n grau i identitats notables}
+\par\vspace{0.5em}
 
-\newpage
-\null
-\newpage
+\noindent\textbf{a) (1 punt)} Resol l'equació $x^2 - 5x + 6 = 0$ i comprova les solucions.
+\vspace{5cm}
 
-% PROBLEMA 2
-\headersection[Matemàtiques I]{Recuperació}
-\noindent{\large\bfseries Problema 2 (1,5 punts): Equacions Logarítmiques}
-\par\vspace{1em}
-\begin{enumerate}[label=\alph*)]
-    \item Resol la següent equació logarítmica pas a pas, utilitzant les propietats:
-    $$\log(x) + \log(x - 9) = 1$$
-    (Recorda comprovar la validesa de les solucions trobades).
-    \item Calcula el valor de $x$ a la següent expressió sense usar calculadora:
-    $$\log_3(\sqrt{27}) - \log_2\left(\frac{1}{4}\right) = x$$
-\end{enumerate}
+\noindent\textbf{b) (1 punt)} Factoritza $x^2 - 9$ usant una identitat notable i troba les seves arrels.
 
-\newpage
-\null
-\newpage
+\begin{infobox}[colback=blue!5, colframe=blue!30]{Comprovació de seguretat}
+    La suma de les dues solucions de l'apartat a) ha de ser exactament $5$.
+\end{infobox}
+\vspace{4cm}
 
-% PROBLEMA 3
-\headersection[Matemàtiques I]{Recuperació}
-\noindent{\large\bfseries Problema 3 (1,5 punts): Polinomis i Paràmetres}
-\par\vspace{1em}
-\noindent Considera el polinomi $P(x) = x^3 + mx^2 + nx - 6$.
-\begin{enumerate}[label=\alph*)]
-    \item Determina els valors dels paràmetres $m$ i $n$ sabent que:
-    \begin{itemize}
-        \item El polinomi és divisible per $(x - 1)$.
-        \item El residu de dividir el polinomi per $(x + 2)$ és $-12$.
-    \end{itemize}
-    \item Un cop trobats $m$ i $n$, factoritza completament el polinomi i indica quines són totes les seves arrels.
-\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage\null\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newpage
-\null
-\newpage
+% ---- PROBLEMA 2 ----
+\headersection{\assignatura{} — \curs}{\unitat}
+\noindent{\large\bfseries Problema 2 (2 punts): Interpretació gràfica}
+\par\vspace{0.5em}
 
-% PROBLEMA 4
-\headersection[Matemàtiques I]{Recuperació}
-\noindent{\large\bfseries Problema 4 (1,5 punts): Valor Absolut}
-\par\vspace{1em}
-\noindent Donada la funció $f(x) = |x + 1| + |x - 4|$:
-\begin{enumerate}[label=\alph*)]
-    \item Expressa $f(x)$ com una funció definida a trossos, eliminant els valors absoluts. Has d'estudiar els signes en els intervals corresponents.
-    \item Calcula el valor de la funció per a $x = -2$ i $x = 2$ utilitzant l'expressió a trossos que has trobat a l'apartat anterior.
-\end{enumerate}
+\noindent Donada la igualtat $x^2 - 2x - 3 = x - 3$:
+\vspace{0.4em}
 
-\newpage
-\null
-\newpage
+\noindent\textbf{a) (1 punt)} Resol algebraicament l'equació.
+\vspace{3.5cm}
+
+\noindent\textbf{b) (1 punt)} Interpreta gràficament: dibuixa ambdues funcions i senyala els punts de tall.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+    \draw[step=1cm,gray!40,very thin] (-5,-5) grid (5,6);
+    \draw[thick,->] (-5,0) -- (5.5,0) node[anchor=north west] {$x$};
+    \draw[thick,->] (0,-5) -- (0,6.5) node[anchor=south east] {$y$};
+    \foreach \x in {-4,-3,-2,-1,1,2,3,4}
+        \draw (\x cm,2pt) -- (\x cm,-2pt) node[anchor=north, font=\small] {$\x$};
+    \foreach \y in {-4,-3,-2,-1,1,2,3,4,5}
+        \draw (2pt,\y cm) -- (-2pt,\y cm) node[anchor=east, font=\small] {$\y$};
+\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage\null\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ---- PROBLEMA 3 ----
+\headersection{\assignatura{} — \curs}{\unitat}
+\noindent{\large\bfseries Problema 3 (2 punts): Trigonometria}
+\par\vspace{0.5em}
+
+\noindent Demostra la identitat trigonomètrica:
+\[
+    \frac{1}{1 - \sin x} + \frac{1}{1 + \sin x} = \frac{2}{\cos^2 x}
+\]
+
+\vspace{14cm}
+
+\newpage\null\newpage
 
 \end{document}
