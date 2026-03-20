@@ -13,9 +13,10 @@ jobs:
       - name: Compilar amb XeLaTeX
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: examen.tex  # Assegura't que el teu .tex es diu així!
+          root_file: examen.tex
           compiler: xelatex
           args: "-interaction=nonstopmode -halt-on-error"
+          extra_fonts: ./assets/fonts/*.ttf
 
       # 3. Preparar Python
       - name: Instal·lar Python
