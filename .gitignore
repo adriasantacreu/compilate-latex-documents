@@ -4,3 +4,6 @@
 *.fls
 *.fdb_latexmk
 *.synctex.gz
+
+# PDFs dels arxius (el PDF actiu a l'arrel sí es trackeja)
+arxius/**/*.pdf
