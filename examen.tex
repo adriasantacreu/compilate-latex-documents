@@ -76,31 +76,17 @@
     fonttitle=\bfseries, coltitle=black, #1
 }
 
-% --- LOGOS EN TOTES LES PÀGINES ---
-% Precarreguem els logos en boxes per evitar problemes de path dins del hook
+% --- CAPÇALERA I PEU (amb logos via fancyhdr) ---
 \graphicspath{{./}{./assets/}}
-\newsavebox{\logoInstitutBox}
-\newsavebox{\logoGeneralitatBox}
-\AtBeginDocument{%
-    \savebox{\logoInstitutBox}{\includegraphics[height=1.4cm]{logo_institut.png}}%
-    \savebox{\logoGeneralitatBox}{\includegraphics[height=1.3cm]{logo_generalitat.png}}%
-}
-\AddToHook{shipout/background}{%
-    \begin{tikzpicture}[remember picture, overlay]
-        \node[anchor=north west, xshift=0.5cm, yshift=-0.5cm, opacity=0.85]
-            at (current page.north west) {\usebox{\logoInstitutBox}};
-        \node[anchor=north east, xshift=-0.5cm, yshift=-0.5cm, opacity=0.85]
-            at (current page.north east) {\usebox{\logoGeneralitatBox}};
-    \end{tikzpicture}%
-}
-
-% --- CAPÇALERA I PEU ---
 \pagestyle{fancy}
 \fancyhf{}
+\fancyhead[L]{\includegraphics[height=1.2cm]{logo_institut.png}}
+\fancyhead[R]{\includegraphics[height=1.1cm]{logo_generalitat.png}}
 \fancyfoot[R]{\tikz\node[circle, fill=black!70, text=white,
     font=\small\bfseries, inner sep=3pt]{\thepage};}
 \renewcommand{\headrulewidth}{0pt}
-\setlength{\headheight}{25pt}
+\setlength{\headheight}{45pt}
+\setlength{\headsep}{10pt}
 
 % --- COMANDES ---
 \newcommand{\parttitle}[1]{%
