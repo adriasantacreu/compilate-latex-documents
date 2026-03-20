@@ -2,7 +2,7 @@
 
 Pipeline automatitzat per compilar exàmens i documents LaTeX amb **XeLaTeX** i publicar el PDF resultant directament al repositori i com a artifact descàrregable.
 
-Fet per **Adrià Santacreu** — IES Sant Pol de Mar.
+Fet per **Adrià Santacreu** — Institut Escola Sant Pol de Mar.
 
 ---
 
@@ -46,7 +46,7 @@ compilate-latex-documents/
 │   │   ├── NotoSans-Bold.ttf
 │   │   ├── NotoSans-Italic.ttf
 │   │   └── NotoSans-BoldItalic.ttf
-│   ├── logo_institut.png       ← IES Sant Pol de Mar
+│   ├── logo_institut.png       ← Institut Escola Sant Pol de Mar
 │   └── logo_generalitat.png    ← Departament d'Educació
 │
 ├── arxius/                     ← historial d'exàmens compilats
