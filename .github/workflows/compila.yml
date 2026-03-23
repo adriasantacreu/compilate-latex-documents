@@ -13,17 +13,29 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Compilar tots els fitxers LaTeX
-        run: |
-          mkdir -p output_pdfs
-          for f in *.tex; do
-            if [ -f "" ]; then
-              echo "Compilant $f..."
-              docker run --rm -v C:\adria-asistent-workspace:/workdir -w /home/runner/work/compilate-latex-documents/compilate-latex-documents xucheng/texlive-full xelatex -interaction=nonstopmode -halt-on-error ""
-            fi
-          done
-        # Nota: He hagut de simplificar per usar Docker o el propi runner. 
-        # Per seguretat i velocitat, millor seguir usant la latex-action però parametritzada.
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: |
+            examen_base.tex
+            examen_Oskar.tex
+            examen_Erlin.tex
+            examen_Iu.tex
+          compiler: xelatex
+          args: "-interaction=nonstopmode -halt-on-error"
+          extra_fonts: ./assets/fonts/*.ttf
+          work_in_root_file_dir: true
 
-      - name: Commitar i Guardar
+      - name: Commitar tots els PDFs
         run: |
-          echo "Processament finalitzat"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add *.pdf
+          git diff --staged --quiet || git commit -m "PDFs compilats automàticament [skip ci]"
+          git push
+
+      - name: Guardar Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-exams-pdfs
+          path: "*.pdf"
+          retention-days: 90
