@@ -18,7 +18,6 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: "*.tex"
-          glob_root_file: true
           compiler: xelatex
           args: "-interaction=nonstopmode -halt-on-error"
           extra_fonts: |
