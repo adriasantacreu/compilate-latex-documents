@@ -1,9 +1,9 @@
-﻿%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PLANTILLA EXAMEN â€” IES Sant Pol de Mar
-% AdriÃ  Santacreu
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PLANTILLA EXAMEN — IES Sant Pol de Mar
+% Adrià Santacreu
 %
-% ÃšS: Defineix les variables a la secciÃ³ CONFIGURACIÃ“ i omple
-%     les seccions de qÃ¼estions i problemes.
+% ÚS: Defineix les variables a la secció CONFIGURACIÓ i omple
+%     les seccions de qüestions i problemes.
 %
 % COMPILAR: xelatex plantilla-examen.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -29,15 +29,15 @@
 \usepackage{colortbl}
 \usepackage{lastpage}
 
-% --- CONFIGURACIÃ“ DE FONTS (path relatiu, portable) ---
+% --- CONFIGURACIÓ DE FONTS (path relatiu, portable) ---
 \setmainfont{NotoSans-Regular.ttf}[
-  Path           = ../assets/fonts/,
+  Path           = ./assets/fonts/,
   BoldFont       = NotoSans-Bold.ttf,
   ItalicFont     = NotoSans-Italic.ttf,
   BoldItalicFont = NotoSans-BoldItalic.ttf
 ]
 \setsansfont{NotoSans-Regular.ttf}[
-  Path           = ../assets/fonts/,
+  Path           = ./assets/fonts/,
   BoldFont       = NotoSans-Bold.ttf,
   ItalicFont     = NotoSans-Italic.ttf,
   BoldItalicFont = NotoSans-BoldItalic.ttf
@@ -49,7 +49,7 @@
 \definecolor{BrightGreen}{HTML}{32CD32}
 \definecolor{BrightPurple}{HTML}{9400D3}
 
-% --- COLORS ROTATIUS PER TÃTOLS ---
+% --- COLORS ROTATIUS PER TÍTOLS ---
 \def\questioncolors{{"BrightPurple","BrightGreen","BrightBlue"}}
 \newcounter{qcolorindex}
 \setcounter{qcolorindex}{0}
@@ -78,8 +78,8 @@
     fonttitle=\bfseries, coltitle=black, #1
 }
 
-% --- CAPÃ‡ALERA I PEU (amb logos via fancyhdr) ---
-\graphicspath{{./}{../assets/}}
+% --- CAPÇALERA I PEU (amb logos via fancyhdr) ---
+\graphicspath{{./}{./assets/}}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\includegraphics[height=1.2cm]{logo_institut.png}}
@@ -106,50 +106,50 @@
   \noindent
   \begin{tabular}{@{}p{10cm}p{5cm}@{}}
   \toprule
-    \textbf{Nom i cognoms: ERLIN CANTARERO} & \textbf{QualificaciÃ³:} \\
+    \textbf{Nom i cognoms: ERLIN CANTARERO} & \textbf{Qualificació:} \\
     \bottomrule
   \end{tabular}
   \par\vspace{0.5cm}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  CONFIGURACIÃ“ â€” modifica aquÃ­ cada examen
+%  CONFIGURACIÓ — modifica aquí cada examen
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\assignatura}{MatemÃ tiques I}
+\newcommand{\assignatura}{Matemàtiques I}
 \newcommand{\curs}{2n ESO B (Adaptat)}
-\newcommand{\unitat}{Ã€lgebra i Trigonometria}
-\newcommand{\dataexamen}{20 de marÃ§ del 2026}
+\newcommand{\unitat}{Àlgebra i Trigonometria}
+\newcommand{\dataexamen}{20 de març del 2026}
 \newcommand{\tempsexamen}{90}
 \newcommand{\puntstest}{4}      % punts totals de la part test
 \newcommand{\puntsproblemes}{6} % punts totals de la part problemes
 \newcommand{\encert}{0,4}       % punts per encert
-\newcommand{\error}{0,13}       % penalitzaciÃ³ per error
+\newcommand{\error}{0,13}       % penalització per error
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 \thispagestyle{fancy}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  FULL 1 â€” QÃœESTIONS TEST
+%  FULL 1 — QÜESTIONS TEST
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\headersection{\assignatura{} â€” \curs}{\unitat}
+\headersection{\assignatura{} — \curs}{\unitat}
 
 \begin{infobox}{Instruccions generals}
     \textbf{Data:} \dataexamen \par\vspace{0.3em}
     \textbf{Temps:} \tempsexamen{} minuts. \par\vspace{0.3em}
     \textbf{Calculadora:} PERMESA (Calculadora). \par\vspace{0.3em}
-    \textbf{Criteris:} Tots els resultats s'han de simplificar i racionalitzar al mÃ xim de forma exacta.\par\vspace{0.3em}
-    \textbf{PuntuaciÃ³ Test:} Encerts: +\encert{} | Errors: --\error{} | En blanc: 0.
+    \textbf{Criteris:} Tots els resultats s'han de simplificar i racionalitzar al màxim de forma exacta.\par\vspace{0.3em}
+    \textbf{Puntuació Test:} Encerts: +\encert{} | Errors: --\error{} | En blanc: 0.
 \end{infobox}
 
-\parttitle{Part A â€” QÃ¼estions (\puntstest{} punts)}
-\noindent\textit{Escriu la lletra de l'opciÃ³ correcta a la graella de respostes de la pÃ gina segÃ¼ent.}
+\parttitle{Part A — Qüestions (\puntstest{} punts)}
+\noindent\textit{Escriu la lletra de l'opció correcta a la graella de respostes de la pàgina següent.}
 
 \begin{enumerate}[label=\textbf{\arabic*.}, itemsep=1em]
 
     % Q1 (Resposta correcta: A)
-    \item El desenvolupament de $(2x - 3)^2$ Ã©s:
+    \item El desenvolupament de $(2x - 3)^2$ és:
     \begin{multicols}{2}
     \begin{enumerate}[label=\textbf{\Alph*)}, itemsep=0.3em]
         \item $4x^2 - 12x + 9$
@@ -160,18 +160,18 @@
     \end{multicols}
 
     % Q2 (Resposta correcta: C)
-    \item Si el discriminant $\Delta = b^2 - 4ac$ d'una equaciÃ³ de 2n grau Ã©s negatiu, l'equaciÃ³ tÃ©:
+    \item Si el discriminant $\Delta = b^2 - 4ac$ d'una equació de 2n grau és negatiu, l'equació té:
     \begin{multicols}{2}
     \begin{enumerate}[label=\textbf{\Alph*)}, itemsep=0.3em]
         \item Dues solucions reals iguals
         \item Dues solucions reals diferents
-        \item Cap soluciÃ³ real
-        \item Una soluciÃ³ real
+        \item Cap solució real
+        \item Una solució real
     \end{enumerate}
     \end{multicols}
 
     % Q3 (Resposta correcta: D)
-    \item Quina d'aquestes equacions Ã©s una equaciÃ³ biquadrada?
+    \item Quina d'aquestes equacions és una equació biquadrada?
     \begin{multicols}{2}
     \begin{enumerate}[label=\textbf{\Alph*)}, itemsep=0.3em]
         \item $x^4 + x^3 - 1 = 0$
@@ -182,7 +182,7 @@
     \end{multicols}
 
     % Q4 (Resposta correcta: B)
-    \item Quants radians equivalen a $150Â°$?
+    \item Quants radians equivalen a $150°$?
     \begin{multicols}{4}
     \begin{enumerate}[label=\textbf{\Alph*)}, itemsep=0.3em]
         \item $\dfrac{\pi}{3}$
@@ -193,7 +193,7 @@
     \end{multicols}
 
     % Q5 (Resposta correcta: A)
-    \item El valor exacte de $\sin^2(45Â°) + \cos^2(45Â°)$ Ã©s:
+    \item El valor exacte de $\sin^2(45°) + \cos^2(45°)$ és:
     \begin{multicols}{4}
     \begin{enumerate}[label=\textbf{\Alph*)}, itemsep=0.3em]
         \item $1$
@@ -206,14 +206,14 @@
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  FULL 2 â€” GRAELLA DE RESPOSTES (pÃ gina senar = dreta)
+%  FULL 2 — GRAELLA DE RESPOSTES (pàgina senar = dreta)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 
-\headersection{\assignatura{} â€” \curs}{\unitat}
-\parttitle{Part A â€” Graella de respostes}
+\headersection{\assignatura{} — \curs}{\unitat}
+\parttitle{Part A — Graella de respostes}
 
-\noindent\textbf{Escriu la lletra de l'opciÃ³ correcta a cada celÂ·la:}
+\noindent\textbf{Escriu la lletra de l'opció correcta a cada cel·la:}
 \vspace{0.5cm}
 
 \renewcommand{\arraystretch}{2.5}
@@ -230,24 +230,24 @@
 \vfill
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  FULL 3 â€” PROBLEMES (comenÃ§a en pÃ gina parell)
-%  Afegir \newpage\null\newpage si cal forÃ§ar pÃ gina parell
+%  FULL 3 — PROBLEMES (comença en pàgina parell)
+%  Afegir \newpage\null\newpage si cal forçar pàgina parell
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 
-\headersection{\assignatura{} â€” \curs}{\unitat}
-\parttitle{Part B â€” Problemes (\puntsproblemes{} punts)}
+\headersection{\assignatura{} — \curs}{\unitat}
+\parttitle{Part B — Problemes (\puntsproblemes{} punts)}
 
 % ---- PROBLEMA 1 ----
 \noindent{\large\bfseries Problema 1 (2 punts): Equacions de 2n grau i identitats notables}
 \par\vspace{0.5em}
 
-\noindent\textbf{a) (1 punt)} Resol l'equaciÃ³ $x^2 - 5x + 6 = 0$ i comprova les solucions.
+\noindent\textbf{a) (1 punt)} Resol l'equació $x^2 - 5x + 6 = 0$ i comprova les solucions.
 \vspace{5cm}
 
 \noindent\textbf{b) (1 punt)} Factoritza $x^2 - 9$ usant una identitat notable i troba les seves arrels.
 
-\begin{infobox}[colback=blue!5, colframe=blue!30]{ComprovaciÃ³ de seguretat}
+\begin{infobox}[colback=blue!5, colframe=blue!30]{Comprovació de seguretat}
     La suma de les dues solucions de l'apartat a) ha de ser exactament $5$.
 \end{infobox}
 \vspace{4cm}
@@ -257,17 +257,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ---- PROBLEMA 2 ----
-\headersection{\assignatura{} â€” \curs}{\unitat}
-\noindent{\large\bfseries Problema 2 (2 punts): InterpretaciÃ³ grÃ fica}
+\headersection{\assignatura{} — \curs}{\unitat}
+\noindent{\large\bfseries Problema 2 (2 punts): Interpretació gràfica}
 \par\vspace{0.5em}
 
 \noindent Donada la igualtat $x^2 - 2x - 3 = x - 3$:
 \vspace{0.4em}
 
-\noindent\textbf{a) (1 punt)} Resol algebraicament l'equaciÃ³.
+\noindent\textbf{a) (1 punt)} Resol algebraicament l'equació.
 \vspace{3.5cm}
 
-\noindent\textbf{b) (1 punt)} Interpreta grÃ ficament: dibuixa ambdues funcions i senyala els punts de tall.
+\noindent\textbf{b) (1 punt)} Interpreta gràficament: dibuixa ambdues funcions i senyala els punts de tall.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -286,11 +286,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ---- PROBLEMA 3 ----
-\headersection{\assignatura{} â€” \curs}{\unitat}
+\headersection{\assignatura{} — \curs}{\unitat}
 \noindent{\large\bfseries Problema 3 (2 punts): Trigonometria}
 \par\vspace{0.5em}
 
-\noindent Demostra la identitat trigonomÃ¨trica:
+\noindent Demostra la identitat trigonomètrica:
 \[
     \frac{1}{1 - \sin x} + \frac{1}{1 + \sin x} = \frac{2}{\cos^2 x}
 \]
