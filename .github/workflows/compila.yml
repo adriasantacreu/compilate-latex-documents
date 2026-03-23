@@ -13,18 +13,12 @@ jobs:
         uses: actions/checkout@v4
 
       # extra_fonts instal·la les fonts DINS del contenidor Docker de l'action
+      # root_file amb glob agafa tots els .tex de l'arrel automàticament
       - name: Compilar tots els fitxers LaTeX
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: |
-            examen_base.tex
-            examen_PI_Erlin_Cantarero.tex
-            examen_PI_Iu_Martinez.tex
-            examen_PI_Oskar_Talamas.tex
-            examen_base_solucionari.tex
-            examen_PI_Erlin_solucionari.tex
-            examen_PI_Iu_solucionari.tex
-            examen_PI_Oskar_solucionari.tex
+          root_file: "*.tex"
+          glob_root_file: true
           compiler: xelatex
           args: "-interaction=nonstopmode -halt-on-error"
           extra_fonts: |
