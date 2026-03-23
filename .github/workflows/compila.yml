@@ -12,6 +12,12 @@ jobs:
       - name: Checkout del codi
         uses: actions/checkout@v4
 
+      - name: Instal·lar fonts al sistema
+        run: |
+          mkdir -p ~/.local/share/fonts
+          cp assets/fonts/*.ttf ~/.local/share/fonts/
+          fc-cache -f -v
+
       - name: Compilar tots els fitxers LaTeX
         uses: xu-cheng/latex-action@v3
         with:
@@ -22,20 +28,13 @@ jobs:
             examen_Iu.tex
           compiler: xelatex
           args: "-interaction=nonstopmode -halt-on-error"
-          extra_fonts: ./assets/fonts/*.ttf
+          # No cal extra_fonts aquí perquè ja les hem posat al sistema
           work_in_root_file_dir: true
 
-      - name: Commitar tots els PDFs
+      - name: Commitar i Guardar
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add *.pdf
-          git diff --staged --quiet || git commit -m "PDFs compilats automàticament [skip ci]"
+          git diff --staged --quiet || git commit -m "PDFs compilats [skip ci]"
           git push
-
-      - name: Guardar Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: all-exams-pdfs
-          path: "*.pdf"
-          retention-days: 90
