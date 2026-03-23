@@ -1,12 +1,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% EXAMEN: Nombres Enters i Fraccions
+% SOLUCIONARI: Nombres Enters i Fraccions
 % 2n ESO B — Matemàtiques | IES Sant Pol de Mar
 % Adrià Santacreu — 23/03/2026
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper, 11pt]{article}
 
-% --- PAQUETS ---
 \usepackage[utf8]{inputenc}
 \usepackage[catalan]{babel}
 \usepackage{amsmath, amssymb, amsfonts}
@@ -25,17 +24,14 @@
 \usepackage{colortbl}
 \usepackage{lastpage}
 
-% --- FONT (per nom, compatible GitHub Actions Docker + extra_fonts) ---
 \setmainfont{Noto Sans}
 \setsansfont{Noto Sans}
 
-% --- COLORS ---
 \definecolor{BrightPink}{HTML}{FF1493}
 \definecolor{BrightBlue}{HTML}{00BFFF}
 \definecolor{BrightGreen}{HTML}{32CD32}
 \definecolor{BrightPurple}{HTML}{9400D3}
 
-% --- COLORS ROTATIUS ---
 \def\questioncolors{{"BrightPurple","BrightGreen","BrightBlue"}}
 \newcounter{qcolorindex}
 \setcounter{qcolorindex}{0}
@@ -49,7 +45,6 @@
 }
 \newcommand{\hlcurrent}[1]{{\sethlcolor{\currentqcolor!30!white}\hl{#1}}}
 
-% --- CAIXES ---
 \tcbuselibrary{skins, breakable}
 \newtcolorbox{infobox}[2][]{
     enhanced, breakable,
@@ -63,7 +58,6 @@
     fonttitle=\bfseries, coltitle=black, #1
 }
 
-% --- CAPÇALERA I PEU ---
 \graphicspath{{./}{./assets/}}
 \pagestyle{fancy}
 \fancyhf{}
@@ -75,7 +69,6 @@
 \setlength{\headheight}{45pt}
 \setlength{\headsep}{10pt}
 
-% --- COMANDES ---
 \newcommand{\parttitle}[1]{%
   \setsectioncolor
   \par\vspace{1.5em}\noindent{\Large\hlcurrent{#1}}\par\nopagebreak\vspace{0.8em}
@@ -96,9 +89,6 @@
   \par\vspace{0.5cm}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  CONFIGURACIÓ
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\assignatura}{Matemàtiques}
 \newcommand{\curs}{2n ESO B}
 \newcommand{\unitat}{Nombres Enters i Fraccions}
@@ -108,7 +98,6 @@
 \newcommand{\puntsproblemes}{6}
 \newcommand{\encert}{0{,}4}
 \newcommand{\error}{0{,}13}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 \thispagestyle{fancy}
@@ -117,20 +106,19 @@
 %  FULL 1 — QÜESTIONS TEST
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\headersection{\assignatura{} — \curs}{\unitat}
+\headersection{\assignatura{} — \curs{} \textcolor{red}{\textbf{— SOLUCIONARI —}}}{\unitat}
 
 \begin{infobox}{Instruccions generals}
     \textbf{Data:} \dataexamen \par\vspace{0.3em}
     \textbf{Temps:} \tempsexamen{} minuts. \par\vspace{0.3em}
     \textbf{Calculadora:} NO permesa. \par\vspace{0.3em}
-    \textbf{Criteris:} Simplifica totes les fraccions al màxim. Expressa els enters amb signe.\par\vspace{0.3em}
     \textbf{Puntuació Test:} Encerts: +\encert{} | Errors: --\error{} | En blanc: 0.
 \end{infobox}
 
 \parttitle{Part A — Qüestions (\puntstest{} punts)}
 \noindent\textit{Escriu la lletra de l'opció correcta a la graella de respostes de la pàgina següent.}
 
-\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=1em]
+\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.8em]
 
     \item Quin és el resultat de $-5 + (-3) \cdot (-2)$?
     \begin{multicols}{4}
@@ -138,6 +126,7 @@
         \item $16$ \item $1$ \item $-11$ \item $-16$
     \end{enumerate}
     \end{multicols}
+    \textcolor{red}{\textbf{Resp: B)} \textit{Jerarquia: primer la multiplicació $(-3)\cdot(-2)=+6$, llavors $-5+6=1$.}}
 
     \item Si la temperatura a les 6h era de $-4\,^{\circ}\text{C}$ i a les 12h és de $7\,^{\circ}\text{C}$, quants graus ha pujat?
     \begin{multicols}{4}
@@ -145,6 +134,7 @@
         \item $3\,^{\circ}\text{C}$ \item $-11\,^{\circ}\text{C}$ \item $11\,^{\circ}\text{C}$ \item $4\,^{\circ}\text{C}$
     \end{enumerate}
     \end{multicols}
+    \textcolor{red}{\textbf{Resp: C)} \textit{$7 - (-4) = 7 + 4 = 11\,^{\circ}\text{C}$. Error típic: dir 3 (7-4 sense signe).}}
 
     \item Quina d'aquestes fraccions és equivalent a $\dfrac{12}{18}$?
     \begin{multicols}{4}
@@ -152,6 +142,7 @@
         \item $\dfrac{2}{3}$ \item $\dfrac{6}{8}$ \item $\dfrac{3}{2}$ \item $\dfrac{4}{9}$
     \end{enumerate}
     \end{multicols}
+    \textcolor{red}{\textbf{Resp: A)} \textit{MCD(12,18)=6 $\Rightarrow$ $\frac{12}{18}=\frac{2}{3}$.}}
 
     \item El resultat de $\dfrac{3}{4} + \dfrac{1}{2}$ és:
     \begin{multicols}{4}
@@ -159,6 +150,7 @@
         \item $\dfrac{4}{6}$ \item $\dfrac{4}{8}$ \item $\dfrac{5}{4}$ \item $\dfrac{1}{4}$
     \end{enumerate}
     \end{multicols}
+    \textcolor{red}{\textbf{Resp: C)} \textit{mcm(4,2)=4: $\frac{3}{4}+\frac{2}{4}=\frac{5}{4}$.}}
 
     \item Calcula la fracció irreducible de $\dfrac{45}{75}$:
     \begin{multicols}{4}
@@ -166,6 +158,7 @@
         \item $\dfrac{9}{15}$ \item $\dfrac{3}{5}$ \item $\dfrac{5}{3}$ \item $\dfrac{15}{25}$
     \end{enumerate}
     \end{multicols}
+    \textcolor{red}{\textbf{Resp: B)} \textit{MCD(45,75)=15 $\Rightarrow$ $\frac{45}{75}=\frac{3}{5}$.}}
 
     \item Quin és el resultat de $\dfrac{2}{3} \cdot \dfrac{5}{4}$?
     \begin{multicols}{4}
@@ -173,6 +166,7 @@
         \item $\dfrac{7}{7}$ \item $\dfrac{10}{12}$ \item $\dfrac{5}{6}$ \item $\dfrac{8}{15}$
     \end{enumerate}
     \end{multicols}
+    \textcolor{red}{\textbf{Resp: C)} \textit{$\frac{2\cdot5}{3\cdot4}=\frac{10}{12}=\frac{5}{6}$. B és equivalent però no simplificada.}}
 
     \item Si dividim $\dfrac{3}{5} \div \dfrac{2}{7}$, el resultat és:
     \begin{multicols}{4}
@@ -180,6 +174,7 @@
         \item $\dfrac{6}{35}$ \item $\dfrac{5}{12}$ \item $\dfrac{21}{10}$ \item $\dfrac{10}{21}$
     \end{enumerate}
     \end{multicols}
+    \textcolor{red}{\textbf{Resp: C)} \textit{Divisió = multiplicar per l'invers: $\frac{3}{5}\cdot\frac{7}{2}=\frac{21}{10}$.}}
 
     \item En una classe de 30 alumnes, els $\dfrac{3}{5}$ són noies. Quants \textbf{nois} hi ha?
     \begin{multicols}{4}
@@ -187,6 +182,7 @@
         \item $18$ \item $12$ \item $15$ \item $20$
     \end{enumerate}
     \end{multicols}
+    \textcolor{red}{\textbf{Resp: B)} \textit{Noies: $\frac{3}{5}\cdot30=18$. Nois: $30-18=12$. Error típic: triar A (18 noies, no nois).}}
 
     \item Quina és l'opció correcta per a $-2^2$?
     \begin{multicols}{4}
@@ -194,6 +190,7 @@
         \item $4$ \item $-4$ \item $-2$ \item $1$
     \end{enumerate}
     \end{multicols}
+    \textcolor{red}{\textbf{Resp: B)} \textit{$-2^2=-(2^2)=-4$. La potència s'aplica al 2, el signe queda fora.}}
 
     \item Hem menjat $\dfrac{1}{4}$ d'un pastís i desprès la meitat del que quedava. Quina fracció hem menjat en total?
     \begin{multicols}{4}
@@ -201,15 +198,16 @@
         \item $\dfrac{1}{2}$ \item $\dfrac{3}{4}$ \item $\dfrac{3}{8}$ \item $\dfrac{5}{8}$
     \end{enumerate}
     \end{multicols}
+    \textcolor{red}{\textbf{Resp: D)} \textit{Queda $\frac{3}{4}$; mengem $\frac{1}{2}\cdot\frac{3}{4}=\frac{3}{8}$. Total: $\frac{1}{4}+\frac{3}{8}=\frac{5}{8}$.}}
 
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  FULL 2 — GRAELLA DE RESPOSTES
+%  FULL 2 — GRAELLA DE RESPOSTES (omplerta)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 
-\headersection{\assignatura{} — \curs}{\unitat}
+\headersection{\assignatura{} — \curs{} \textcolor{red}{\textbf{— SOLUCIONARI —}}}{\unitat}
 \parttitle{Part A — Graella de respostes}
 
 \noindent\textbf{Escriu la lletra de l'opció correcta a cada cel·la:}
@@ -221,11 +219,11 @@
 \hline
 \rowcolor{black!10} \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
 \hline
- & & & & \\
+\textcolor{red}{\textbf{B}} & \textcolor{red}{\textbf{C}} & \textcolor{red}{\textbf{A}} & \textcolor{red}{\textbf{C}} & \textcolor{red}{\textbf{B}} \\
 \hline
 \rowcolor{black!10} \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} \\
 \hline
- & & & & \\
+\textcolor{red}{\textbf{C}} & \textcolor{red}{\textbf{C}} & \textcolor{red}{\textbf{B}} & \textcolor{red}{\textbf{B}} & \textcolor{red}{\textbf{D}} \\
 \hline
 \end{tabular}
 \end{center}
@@ -237,7 +235,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 
-\headersection{\assignatura{} — \curs}{\unitat}
+\headersection{\assignatura{} — \curs{} \textcolor{red}{\textbf{— SOLUCIONARI —}}}{\unitat}
 \parttitle{Part B — Problemes (\puntsproblemes{} punts)}
 
 \noindent{\large\bfseries Problema 1 (2 punts): L'ascensor del centre comercial}
@@ -246,47 +244,86 @@
 \noindent Un ascensor es troba a la planta $-2$. Puja 5 plantes, després en baixa 3, torna a pujar 7 i finalment en baixa 8.
 
 \noindent\textbf{a) (1 punt)} En quina planta es troba finalment?
-\vspace{4.5cm}
+
+\textcolor{red}{
+\begin{align*}
+-2 + 5 &= +3 \quad \text{(planta 3)} \\
+3 - 3 &= 0 \quad \text{(planta 0, baixa)} \\
+0 + 7 &= +7 \quad \text{(planta 7)} \\
+7 - 8 &= \mathbf{-1} \quad \text{(planta final: }\mathbf{-1}\text{)}
+\end{align*}
+}
+\vspace{0.5cm}
 
 \noindent\textbf{b) (1 punt)} Si cada planta fa 3 metres d'alçada, quants metres ha recorregut en total (pujant i baixant)?
 
+\textcolor{red}{
+\begin{align*}
+\text{Total plantes recorregudes} &= 5 + 3 + 7 + 8 = 23 \text{ plantes} \\
+\text{Total metres} &= 23 \times 3 = \mathbf{69 \text{ metres}}
+\end{align*}
+}
+
 \begin{infobox}[colback=blue!5, colframe=blue!30]{Comprovació de seguretat}
-    El resultat de la planta final es troba entre $-5$ i $5$.
+    El resultat de la planta final es troba entre $-5$ i $5$. \quad \textcolor{red}{$-1$ ✓}
 \end{infobox}
-\vspace{3cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage\null\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\headersection{\assignatura{} — \curs}{\unitat}
+\headersection{\assignatura{} — \curs{} \textcolor{red}{\textbf{— SOLUCIONARI —}}}{\unitat}
 \noindent{\large\bfseries Problema 2 (2 punts): Operacions combinades amb fraccions}
 \par\vspace{0.5em}
 
 \noindent Calcula pas a pas, simplificant el resultat final:
 $$\frac{2}{5} \cdot \left( \frac{1}{2} + \frac{1}{3} \right) - \frac{1}{6} \div \frac{2}{3}$$
 
-\vspace{12cm}
+\textcolor{red}{
+\begin{align*}
+&= \frac{2}{5} \cdot \left( \frac{3}{6} + \frac{2}{6} \right) - \frac{1}{6} \cdot \frac{3}{2} \\[0.4em]
+&= \frac{2}{5} \cdot \frac{5}{6} - \frac{3}{12} \\[0.4em]
+&= \frac{10}{30} - \frac{1}{4} \\[0.4em]
+&= \frac{1}{3} - \frac{1}{4} \\[0.4em]
+&= \frac{4}{12} - \frac{3}{12} \\[0.4em]
+&= \boxed{\dfrac{1}{12}}
+\end{align*}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage\null\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\headersection{\assignatura{} — \curs}{\unitat}
+\headersection{\assignatura{} — \curs{} \textcolor{red}{\textbf{— SOLUCIONARI —}}}{\unitat}
 \noindent{\large\bfseries Problema 3 (2 punts): El dipòsit de benzina}
 \par\vspace{0.5em}
 
 \noindent El dipòsit d'un cotxe té una capacitat de 60 litres. El viatge d'anada ha consumit $\dfrac{2}{5}$ del dipòsit i el de tornada $\dfrac{1}{3}$ del dipòsit inicial.
 
 \noindent\textbf{a) (1 punt)} Quina fracció del dipòsit queda al final del viatge?
-\vspace{6cm}
+
+\textcolor{red}{
+\begin{align*}
+\text{Consumit} &= \frac{2}{5} + \frac{1}{3} = \frac{6}{15} + \frac{5}{15} = \frac{11}{15} \\[0.4em]
+\text{Queda} &= 1 - \frac{11}{15} = \boxed{\dfrac{4}{15}}
+\end{align*}
+}
+\vspace{0.3cm}
 
 \noindent\textbf{b) (1 punt)} Quants litres de benzina s'han consumit en total?
 
+\textcolor{red}{
+\begin{align*}
+\text{Anada:} &\quad \frac{2}{5} \cdot 60 = 24 \text{ L} \\[0.3em]
+\text{Tornada:} &\quad \frac{1}{3} \cdot 60 = 20 \text{ L} \\[0.3em]
+\text{Total consumit:} &\quad 24 + 20 = \boxed{44 \text{ L}} \\[0.3em]
+\text{Comprovació: queden} &\quad 60 - 44 = 16 \text{ L} = \frac{4}{15}\cdot 60 \; \checkmark
+\end{align*}
+}
+
 \begin{infobox}[colback=blue!5, colframe=blue!30]{Comprovació de seguretat}
-    Queden menys de 20 litres al dipòsit.
+    Queden menys de 20 litres al dipòsit. \quad \textcolor{red}{$16\text{ L} < 20\text{ L}$ ✓}
 \end{infobox}
-\vspace{4cm}
 
 \newpage\null\newpage
 

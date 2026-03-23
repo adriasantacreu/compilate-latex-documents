@@ -1,8 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% EXAMEN PI: Nombres Enters i Fraccions
-% Iu Martínez — 2n ESO B | Nivell: 1r ESO (reforç)
-% IES Sant Pol de Mar — 23/03/2026
-% PI: calculadora, suport visual, enunciats curts i directes
+% SOLUCIONARI PI: Nombres Enters i Fraccions
+% Oskar Talamás — 2n ESO B | IES Sant Pol de Mar — 23/03/2026
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper, 11pt]{article}
@@ -48,14 +46,11 @@
 
 \tcbuselibrary{skins, breakable}
 \newtcolorbox{infobox}[2][]{
-    enhanced, breakable,
-    title=#2, colback=black!5, colbacktitle=black!20,
+    enhanced, breakable, title=#2, colback=black!5, colbacktitle=black!20,
     colframe=white, boxrule=0pt, arc=0mm, left=5mm,
     toptitle=1.5mm, bottomtitle=1.5mm,
-    overlay={%
-        \draw[black!20, line width=2pt]
-        ([xshift=1pt]frame.south west) -- ([xshift=1pt]frame.north west);
-    },
+    overlay={\draw[black!20, line width=2pt]
+        ([xshift=1pt]frame.south west) -- ([xshift=1pt]frame.north west);},
     fonttitle=\bfseries, coltitle=black, #1
 }
 
@@ -76,88 +71,68 @@
 }
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \newcommand{\headersection}[2]{%
-  \par\vspace*{0pt}
-  \noindent \setsectioncolor
+  \par\vspace*{0pt}\noindent \setsectioncolor
   {\Large\bfseries\color{\currentqcolor} #1}\\[0.1cm]
   {\textbf{\color{black!70} Unitat: \textit{#2}}}
-  \par\vspace{0.4cm}
-  \noindent
+  \par\vspace{0.4cm}\noindent
   \begin{tabular}{@{}p{10cm}p{5cm}@{}}
-  \toprule
-    \textbf{Nom i cognoms:} & \textbf{Qualificació:} \\
-    \bottomrule
-  \end{tabular}
-  \par\vspace{0.5cm}
+  \toprule \textbf{Nom i cognoms:} & \textbf{Qualificació:} \\ \bottomrule
+  \end{tabular}\par\vspace{0.5cm}
 }
 
 \newcommand{\assignatura}{Matemàtiques \textcolor{red}{\textbf{(PI)}}}
 \newcommand{\curs}{2n ESO B}
 \newcommand{\unitat}{Nombres Enters i Fraccions}
-\newcommand{\dataexamen}{23 de març del 2026}
-\newcommand{\tempsexamen}{90}
-\newcommand{\puntstest}{4}
-\newcommand{\puntsproblemes}{6}
 
 \begin{document}
 \thispagestyle{fancy}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  FULL 1 — TEST
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\headersection{\assignatura{} — \curs}{\unitat}
+\headersection{\assignatura{} — \curs{} \textcolor{red}{\textbf{— SOLUCIONARI —}}}{\unitat}
 
 \begin{infobox}{Instruccions}
-    \textbf{Alumne/a:} Iu Martínez \par\vspace{0.3em}
-    \textbf{Data:} \dataexamen{} \quad \textbf{Temps:} \tempsexamen{} minuts. \par\vspace{0.3em}
-    \textbf{Calculadora:} SÍ permesa. Pots tenir les taules i el formulari davant.
+    \textbf{Alumne/a:} Oskar Talamás \quad \textbf{Data:} 23 de març del 2026
 \end{infobox}
 
-\parttitle{Part A — Qüestions (\puntstest{} punts)}
-\noindent\textit{Escriu la lletra de l'opció correcta a la graella de respostes de la pàgina següent.}
+\parttitle{Part A — Qüestions (4 punts)}
 
-\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=1.2em]
+\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.8em]
 
-    \item Calcula: $-5 + 6 \cdot 2$
+    \item Quin és el resultat de $-5 + 6$?
     \begin{multicols}{4}
     \begin{enumerate}[label=\textbf{\Alph*)}, itemsep=0.3em]
-        \item $7$ \item $2$ \item $-11$ \item $1$
+        \item $1$ \item $-11$ \item $11$ \item $-1$
     \end{enumerate}
     \end{multicols}
+    \textcolor{red}{\textbf{Resp: A)} \textit{$-5+6=1$.}}
 
-    \item A la nevera estem a $-4\,^{\circ}\text{C}$ i la temperatura puja $11\,^{\circ}\text{C}$. A quina temperatura estem?
+    \item La temperatura era de $-4\,^{\circ}\text{C}$ i ha pujat $7\,^{\circ}\text{C}$. A quina temperatura estem?
     \begin{multicols}{4}
     \begin{enumerate}[label=\textbf{\Alph*)}, itemsep=0.3em]
-        \item $7\,^{\circ}\text{C}$ \item $15\,^{\circ}\text{C}$ \item $-7\,^{\circ}\text{C}$ \item $0\,^{\circ}\text{C}$
+        \item $3\,^{\circ}\text{C}$ \item $11\,^{\circ}\text{C}$ \item $-11\,^{\circ}\text{C}$ \item $0\,^{\circ}\text{C}$
     \end{enumerate}
     \end{multicols}
+    \textcolor{red}{\textbf{Resp: A)} \textit{$-4+7=3\,^{\circ}\text{C}$.}}
 
-    \item Quina fracció és equivalent a $\dfrac{1}{2}$?
+    \item Quina fracció és la meitat d'un pastís?
     \begin{multicols}{4}
     \begin{enumerate}[label=\textbf{\Alph*)}, itemsep=0.3em]
-        \item $\dfrac{2}{4}$ \item $\dfrac{2}{3}$ \item $\dfrac{1}{4}$ \item $\dfrac{3}{2}$
+        \item $\dfrac{1}{4}$ \item $\dfrac{1}{2}$ \item $\dfrac{2}{1}$ \item $\dfrac{1}{3}$
     \end{enumerate}
     \end{multicols}
+    \textcolor{red}{\textbf{Resp: B)} \textit{La meitat és dividir en 2 parts iguals: $\frac{1}{2}$.}}
 
-    \item Calcula $\dfrac{3}{4} + \dfrac{1}{4}$:
+    \item Calcula $\dfrac{1}{4} + \dfrac{2}{4}$:
     \begin{multicols}{4}
     \begin{enumerate}[label=\textbf{\Alph*)}, itemsep=0.3em]
-        \item $\dfrac{4}{8}$ \item $\dfrac{4}{4} = 1$ \item $\dfrac{2}{4}$ \item $\dfrac{3}{16}$
+        \item $\dfrac{3}{8}$ \item $\dfrac{3}{4}$ \item $\dfrac{2}{4}$ \item $\dfrac{4}{4}$
     \end{enumerate}
     \end{multicols}
+    \textcolor{red}{\textbf{Resp: B)} \textit{Mateix denominador: $\frac{1+2}{4}=\frac{3}{4}$.}}
 
 \end{enumerate}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  FULL 2 — GRAELLA + PROBLEMES
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-
-\headersection{\assignatura{} — \curs}{\unitat}
-\parttitle{Part A — Graella de respostes}
-
-\noindent\textbf{Escriu la lletra de l'opció correcta a cada cel·la:}
 \vspace{0.5cm}
+\parttitle{Part A — Graella de respostes}
 
 \renewcommand{\arraystretch}{2.5}
 \begin{center}
@@ -165,32 +140,41 @@
 \hline
 \rowcolor{black!10} \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} \\
 \hline
- & & & \\
+\textcolor{red}{\textbf{A}} & \textcolor{red}{\textbf{A}} & \textcolor{red}{\textbf{B}} & \textcolor{red}{\textbf{B}} \\
 \hline
 \end{tabular}
 \end{center}
 
-\vspace{1cm}
+\newpage
 
-\parttitle{Part B — Problemes (\puntsproblemes{} punts)}
+\headersection{\assignatura{} — \curs{} \textcolor{red}{\textbf{— SOLUCIONARI —}}}{\unitat}
+\parttitle{Part B — Problemes (6 punts)}
 
 \noindent{\large\bfseries Problema 1 (3 punts): L'ascensor}
-\par\vspace{0.5em}
 
-\noindent Estem a la planta $-2$. L'ascensor \textbf{puja 5 plantes} i desprès en \textbf{baixa 8}.
+\noindent Estem a la planta $-2$. L'ascensor puja 5 plantes.
 
-\noindent\textbf{a) (3 punts)} A quina planta arribem al final?
-\vspace{5cm}
+\noindent\textbf{a)} A quina planta arribem?
 
-\noindent{\large\bfseries Problema 2 (3 punts): El dipòsit}
-\par\vspace{0.5em}
+\textcolor{red}{$-2 + 5 = \mathbf{+3}$ \quad (planta 3)}
+\vspace{0.5cm}
 
-\noindent Tenim un dipòsit de \textbf{60 litres}. N'hem consumit $\dfrac{1}{4}$ part.
+\noindent\textbf{b)} Des d'aquesta planta, baixem 3 plantes més. On som ara?
 
-\noindent\textbf{a) (1{,}5 punts)} Quants litres hem gastat?
-\vspace{4cm}
+\textcolor{red}{$3 - 3 = \mathbf{0}$ \quad (planta baixa, planta 0)}
+\vspace{1cm}
 
-\noindent\textbf{b) (1{,}5 punts)} Quants litres queden al dipòsit?
-\vspace{3.5cm}
+\noindent{\large\bfseries Problema 2 (3 punts): Berenar amb amics}
+
+\noindent Tenim una pizza tallada en 8 trossos. En mengem 3 trossos.
+
+\noindent\textbf{a)} Quina fracció de la pizza hem menjat?
+
+\textcolor{red}{Hem menjat 3 trossos de 8: $\dfrac{3}{8}$ de la pizza. (MCD(3,8)=1, ja és irreducible.)}
+\vspace{0.5cm}
+
+\noindent\textbf{b)} Quants trossos queden a la caixa?
+
+\textcolor{red}{$8 - 3 = \mathbf{5}$ trossos.}
 
 \end{document}
