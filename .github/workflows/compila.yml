@@ -1,4 +1,4 @@
-﻿name: Compilar LaTeX i commitar PDF
+name: Compilar LaTeX i commitar PDF
 
 on: [push, workflow_dispatch]
 
@@ -12,29 +12,33 @@ jobs:
       - name: Checkout del codi
         uses: actions/checkout@v4
 
-      - name: Instal·lar fonts al sistema
-        run: |
-          mkdir -p ~/.local/share/fonts
-          cp assets/fonts/*.ttf ~/.local/share/fonts/
-          fc-cache -f -v
-
+      # extra_fonts instal·la les fonts DINS del contenidor Docker de l'action
+      # (fc-cache al host no funciona perquè latex-action corre en Docker)
       - name: Compilar tots els fitxers LaTeX
         uses: xu-cheng/latex-action@v3
         with:
           root_file: |
             examen_base.tex
-            examen_Oskar.tex
-            examen_Erlin.tex
-            examen_Iu.tex
+            examen_PI_Erlin_Cantarero.tex
+            examen_PI_Iu_Martinez.tex
+            examen_PI_Oskar_Talamas.tex
           compiler: xelatex
           args: "-interaction=nonstopmode -halt-on-error"
-          # No cal extra_fonts aquí perquè ja les hem posat al sistema
+          extra_fonts: |
+            ./assets/fonts/*.ttf
           work_in_root_file_dir: true
 
-      - name: Commitar i Guardar
+      - name: Commitar PDFs al repositori
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add *.pdf
           git diff --staged --quiet || git commit -m "PDFs compilats [skip ci]"
           git push
+
+      - name: Guardar tots els PDFs com a Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-exams-pdfs
+          path: "*.pdf"
+          retention-days: 90
